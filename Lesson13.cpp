@@ -1,46 +1,73 @@
 #include<bits/stdc++.h>
+#include<stdio.h>
 using namespace std;
 typedef struct Node{
 int data;
 Node* next;
 Node* prev;
-}
+};
 Node* insertb(Node* head, int d)
 {
     Node* temp=new Node();
     temp->data=d;
+    temp->next=NULL;
+    if(head==NULL)
+    {
+        head=temp;
+    }
+    else
+    {
     temp->next=head;
     head->prev=temp;
     temp->prev=NULL;
     head=temp;
+    }
+
     return head;
 }
-void inserte(Node* head)
+Node* inserte(Node* head,int d)
 {
     Node* temp=new Node();
     temp->data=d;
     temp->next=NULL;
-
-    while(head->next!=NULL)
+    if(head==NULL)
+    {
+        head=temp;
+    }
+    else
+    {
+      while(head->next!=NULL)
     {
         head=head->next;
     }
     temp->prev=head;
     head->next=temp;
+    }
 
+return head;
 
 }
 void print(Node* head)
 {
   while(head!=NULL)
     {
-        cout<<head->data<<endl;
+        cout<<head->data<<" ";
         head=head->next;
     }
+    cout<<endl;
 }
-Node* reversep(Node* head)
+void reversep(Node* head)
 {
-
+while (head->next!=NULL)
+{
+    head=head->next;
+}
+while(head!=NULL)
+{
+    cout<<head->data<<" ";
+    head=head->prev;
+}
+cout<<endl;
 }
 int main()
 {
@@ -66,7 +93,9 @@ int main()
       }
       else if(option==2)
       {
-          inserte(head);
+          cout<<"insert data"<<endl;
+          cin>>d;
+          head=inserte(head,d);
       }
       else if(option==3)
       {
